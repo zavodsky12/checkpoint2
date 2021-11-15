@@ -8,7 +8,8 @@ class Post
         private ?string $obrazok = null,
         private string $meno = "",
         private string $priezvisko = "",
-        private string $krajina = ""
+        private string $krajina = "",
+        private int $likes = 0
     )
     {}
 
@@ -90,5 +91,21 @@ class Post
     public function setKrajina(string $krajina): void
     {
         $this->krajina = $krajina;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLikes(): int
+    {
+        return $this->likes;
+    }
+
+    /**
+     * @param int $likes
+     */
+    public function setLikes(int $likes): void
+    {
+        $this->likes = $likes;
     }
 }

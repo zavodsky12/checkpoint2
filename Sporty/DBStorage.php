@@ -42,4 +42,10 @@ class DBStorage
         $this->con->prepare("UPDATE sportovci SET priezvisko = ? WHERE id=?")
             ->execute([$priezvisko->getPriezvisko(), $priezvisko->getId()]);
     }
+
+    public function addLikes(int $id)
+    {
+        $this->con->prepare("UPDATE sportovci SET likes = likes + 1 where id=?")
+            ->execute([intval($id)]);
+    }
 }

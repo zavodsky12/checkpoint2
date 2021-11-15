@@ -21,6 +21,10 @@ class App
         if (isset($_POST['priezvisko'])) {
             $this->storage->addPriezvisko(new Post(id: $_POST['id'], priezvisko: $_POST['text']));
         }
+
+        if (isset($_GET['like'])) {
+            $this->storage->addLikes($_GET['like']);
+        }
     }
     private function saveImage() {
         if ($_FILES['file']['error'] == UPLOAD_ERR_OK) {

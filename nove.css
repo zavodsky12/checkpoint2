@@ -28,3 +28,8 @@ button {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     float: left;
 }
+.lajky {
+    background-color: blue;
+    padding: 5px;
+    font-size: 22px;
+}
