@@ -1,5 +1,5 @@
 <?php
-require "Post.php";
+require "Sporty/Post.php";
 require "DBStorage.php";
 
 class App

@@ -1,5 +1,7 @@
 <?php
-
+session_start();
+require "AuthController.php";
+$authctr = new AuthController();
 ?>
 
 
@@ -9,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="vlastne.css">
+    <link rel="stylesheet" href="nove.css">
     <title>Stránka, ktorá sa venuje olympijským hrám v Tokiu</title>
 </head>
 
@@ -56,6 +59,24 @@
     </div>
 
     <div class="col-22 col-s-4 aside">
+        <?php if(Auth::isLogged()) { ?>
+            <div class="login">
+                <h2>Ste prihlaseny</h2>
+                <form method="post">
+                    <input type="submit" name="logout" value="Odhlasit">
+                </form>
+            </div>
+        <?php } else { ?>
+            <div class="login">
+                <h2>Login</h2>
+            <form method="post">
+                <label for="controle">Email</label>
+                <input type="text" name="login">
+                <input type="submit" value="Prihlasit">
+            </form>
+            </div>
+        <?php } ?>
+        <br>
         <div class="right">
             <img src="pravy.png" class="obr">
             <h2>Japonsko</h2>

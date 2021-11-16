@@ -1,4 +1,5 @@
 <?php
+require "AuthController.php";
 
 class DBStorage
 {
@@ -22,7 +23,7 @@ class DBStorage
             ->execute([$newPost->getImage(),"","",""]);
     }
     public function getAllPosts() {
-        $stmt = $this->con->prepare("SELECT * FROM sportovci");
+        $stmt = $this->con->prepare("SELECT * FROM sportovci order by likes desc");
         $stmt->execute();
 
 //      najskor sa musi spustit konstruktor a potom az property
@@ -45,7 +46,9 @@ class DBStorage
 
     public function addLikes(int $id)
     {
-        $this->con->prepare("UPDATE sportovci SET likes = likes + 1 where id=?")
-            ->execute([intval($id)]);
+        if (Auth::isLogged()) {
+            $this->con->prepare("UPDATE sportovci SET likes = likes + 1 where id=?")
+                ->execute([intval($id)]);
+        }
     }
 }
