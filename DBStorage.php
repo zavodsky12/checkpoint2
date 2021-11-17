@@ -1,6 +1,4 @@
 <?php
-require "AuthController.php";
-
 class DBStorage
 {
 
@@ -46,9 +44,15 @@ class DBStorage
 
     public function addLikes(int $id)
     {
-        if (Auth::isLogged()) {
+        if (!empty($_SESSION['name'])) {
             $this->con->prepare("UPDATE sportovci SET likes = likes + 1 where id=?")
                 ->execute([intval($id)]);
         }
+    }
+
+    public function deleteFile(int $id)
+    {
+        $this->con->prepare("DELETE FROM sportovci WHERE id=?")
+            ->execute([intval($id)]);
     }
 }

@@ -2,6 +2,7 @@
 require "../App.php";
 $app = new App();
 session_start();
+require "../AuthController.php";
 $authctr = new AuthController();
 ?>
 
@@ -46,11 +47,14 @@ $authctr = new AuthController();
             <h1>Športovci</h1>
 
             <br>
-
-            <form method="post" enctype="multipart/form-data">
-                <input type="file" name="file"><br><br>
-                <input type="submit" value="Vloz obrazok">
-            </form>
+            <?php if(isset($_SESSION['name'])) { ?>
+                <?php if($_SESSION['name'] == "admin") { ?>
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="file" name="file"><br><br>
+                        <input type="submit" value="Vloz obrazok">
+                    </form>
+                <?php } ?>
+            <?php } ?>
             <?php $url = $_SERVER['REQUEST_URI'] ?>
             <?php $array = explode('=', $url);
             $end = end($array); ?>
@@ -58,20 +62,28 @@ $authctr = new AuthController();
                 <div class="lave" style="width: 18rem; margin: 0.2rem; margin-top: 1rem">
                     <img src="files/<?=$post->getImage()?>" class="obr vlavo" height="160">
                     <?php if($post->getMeno() == "") { ?>
-                        <form method="post">
-                            <input type="hidden" name="id" value="<?= $post->getId()?>">
-                            <input type="text" name="text" size="19" placeholder="Vloz meno ...">
-                            <input type="submit" value="Posli" name="meno">
-                        </form>
+                        <?php if(isset($_SESSION['name'])) { ?>
+                            <?php if($_SESSION['name'] == "admin") { ?>
+                                <form method="post">
+                                    <input type="hidden" name="id" value="<?= $post->getId()?>">
+                                    <input type="text" name="text" size="19" placeholder="Vloz meno ...">
+                                    <input type="submit" value="Posli" name="meno">
+                                </form>
+                            <?php } ?>
+                        <?php } ?>
                     <?php } else { ?>
                         <p><?=$post->getmeno()?></p>
                     <?php } ?>
                     <?php if($post->getPriezvisko() == "") { ?>
-                        <form method="post">
-                            <input type="hidden" name="id" value="<?= $post->getId()?>">
-                            <input type="text" name="text" size="19" placeholder="Vloz priezvisko ...">
-                            <input type="submit" value="Posli" name="priezvisko">
-                        </form>
+                        <?php if(isset($_SESSION['name'])) { ?>
+                            <?php if($_SESSION['name'] == "admin") { ?>
+                                <form method="post">
+                                    <input type="hidden" name="id" value="<?= $post->getId()?>">
+                                    <input type="text" name="text" size="19" placeholder="Vloz priezvisko ...">
+                                    <input type="submit" value="Posli" name="priezvisko">
+                                </form>
+                            <?php } ?>
+                        <?php } ?>
                     <?php } else { ?>
                         <p><?=$post->getPriezvisko()?></p>
                     <?php } ?>
@@ -85,6 +97,13 @@ $authctr = new AuthController();
 <!--                        vytiahol som si poslednu cast urlka do end-->
                         <?php if(isset($_GET['like']) && $post->getId() == $end) { ?>
                             <p class="cervena">Na lajkovanie sa musis prihlasit</p>
+                        <?php } ?>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['name'])) { ?>
+                        <?php if($_SESSION['name'] == "admin") { ?>
+                            <a href="?delete=<?=$post->getId()?>" class="dilit">
+                                Zmaž príspevok
+                            </a>
                         <?php } ?>
                     <?php } ?>
                 </div>

@@ -25,6 +25,10 @@ class App
         if (isset($_GET['like'])) {
             $this->storage->addLikes($_GET['like']);
         }
+
+        if (isset($_GET['delete'])) {
+            $this->storage->deleteFile($_GET['delete']);
+        }
     }
     private function saveImage() {
         if ($_FILES['file']['error'] == UPLOAD_ERR_OK) {
