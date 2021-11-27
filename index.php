@@ -27,7 +27,7 @@ $authctr = new AuthController();
     </div>
     <div class="col-2 col-s-12 menu">
         <ul>
-            <li class="hlavne"><a href="rezponzivna.html">Hlavná stránka</a></li>
+            <li class="hlavne"><a href="index.php">Hlavná stránka</a></li>
             <li class="hlavne"><a href="Sporty/Sportovci.php">Športy<i class="fas fa-caret-down"></i></li>
             <li class="opacne"><a href="Sporty/Atletika.html" class="red">Atletika</a></li>
             <li class="opacne"><a href="Sporty/Futbal.html" class="red">Futbal</a></li>
@@ -69,11 +69,15 @@ $authctr = new AuthController();
         <?php } else { ?>
             <div class="login">
                 <h2>Login</h2>
-            <form method="post">
-                <label for="controle">Email</label>
-                <input type="text" name="login">
-                <input type="submit" value="Prihlasit">
-            </form>
+                <?php if(Auth::isBadLoggin()) { ?>
+                    <p class="cervena">Zadali ste zly login</p>
+                    <?php unset($_SESSION['bad']); ?>
+                <?php } ?>
+                <form method="post">
+                    <label for="controle">Email</label>
+                    <input type="text" name="login">
+                    <input type="submit" value="Prihlasit">
+                </form>
             </div>
         <?php } ?>
         <br>

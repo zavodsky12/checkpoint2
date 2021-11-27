@@ -20,7 +20,13 @@ class AuthController
 
     public function login($name)
     {
+        $dlzka = strlen($name);
+        $pouzivane = substr($name, 1, $dlzka-1);
+        if (strpos($pouzivane, '@') !== false) {
             Auth::login($name);
+        } else {
+            Auth::badLoggin($name);
+        }
     }
 
     public function logout()

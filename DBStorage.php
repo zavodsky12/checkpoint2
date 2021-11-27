@@ -1,4 +1,7 @@
 <?php
+require "AuthController.php";
+session_start();
+$authctr = new AuthController();
 class DBStorage
 {
 
@@ -44,7 +47,7 @@ class DBStorage
 
     public function addLikes(int $id)
     {
-        if (!empty($_SESSION['name'])) {
+        if (Auth::isLogged()) {
             $this->con->prepare("UPDATE sportovci SET likes = likes + 1 where id=?")
                 ->execute([intval($id)]);
         }

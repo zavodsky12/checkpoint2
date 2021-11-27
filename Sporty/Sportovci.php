@@ -1,8 +1,6 @@
 <?php
 require "../App.php";
 $app = new App();
-session_start();
-require "../AuthController.php";
 $authctr = new AuthController();
 ?>
 
@@ -48,7 +46,7 @@ $authctr = new AuthController();
 
             <br>
             <?php if(isset($_SESSION['name'])) { ?>
-                <?php if($_SESSION['name'] == "admin") { ?>
+                <?php if($_SESSION['name'] == "admin@admin") { ?>
                     <form method="post" enctype="multipart/form-data">
                         <input type="file" name="file"><br><br>
                         <input type="submit" value="Vloz obrazok">
@@ -63,7 +61,7 @@ $authctr = new AuthController();
                     <img src="files/<?=$post->getImage()?>" class="obr vlavo" height="160">
                     <?php if($post->getMeno() == "") { ?>
                         <?php if(isset($_SESSION['name'])) { ?>
-                            <?php if($_SESSION['name'] == "admin") { ?>
+                            <?php if($_SESSION['name'] == "admin@admin") { ?>
                                 <form method="post">
                                     <input type="hidden" name="id" value="<?= $post->getId()?>">
                                     <input type="text" name="text" size="19" placeholder="Vloz meno ...">
@@ -76,7 +74,7 @@ $authctr = new AuthController();
                     <?php } ?>
                     <?php if($post->getPriezvisko() == "") { ?>
                         <?php if(isset($_SESSION['name'])) { ?>
-                            <?php if($_SESSION['name'] == "admin") { ?>
+                            <?php if($_SESSION['name'] == "admin@admin") { ?>
                                 <form method="post">
                                     <input type="hidden" name="id" value="<?= $post->getId()?>">
                                     <input type="text" name="text" size="19" placeholder="Vloz priezvisko ...">
@@ -100,7 +98,7 @@ $authctr = new AuthController();
                         <?php } ?>
                     <?php } ?>
                     <?php if(isset($_SESSION['name'])) { ?>
-                        <?php if($_SESSION['name'] == "admin") { ?>
+                        <?php if($_SESSION['name'] == "admin@admin") { ?>
                             <a href="?delete=<?=$post->getId()?>" class="dilit">
                                 Zmaž príspevok
                             </a>
@@ -122,6 +120,10 @@ $authctr = new AuthController();
         <?php } else { ?>
             <div class="login">
                 <h2>Login</h2>
+                <?php if(Auth::isBadLoggin()) { ?>
+                    <p class="cervena">Zadali ste zly login</p>
+                    <?php unset($_SESSION['bad']); ?>
+                <?php } ?>
                 <form method="post">
                     <label for="controle">Email</label>
                     <input type="text" name="login">
