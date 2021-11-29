@@ -27,8 +27,8 @@ $authctr = new AuthController();
     <div class="col-2 col-s-12 menu">
         <ul>
             <li class="hlavne"><a href="../index.php">Hlavná stránka</a></li>
-            <li class="hlavne">Športy<i class="fas fa-caret-down"></i></li>
-            <li class="opacne"><a href="Atletika.html" class="red">Atletika</a></li>
+            <li class="hlavne"><a href="Sportovci.php">Športy<i class="fas fa-caret-down"></i></li>
+            <li class="opacne"><a href="Atletika.php" class="red">Atletika</a></li>
             <li class="opacne"><a href="Futbal.html" class="red">Futbal</a></li>
             <li class="opacne"><a href="Plavanie.html" class="red">Plávanie</a></li>
             <li class="opacne"><a href="Volejbal.html" class="red">Volejbal</a></li>

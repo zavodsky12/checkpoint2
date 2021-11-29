@@ -29,7 +29,7 @@ $authctr = new AuthController();
         <ul>
             <li class="hlavne"><a href="index.php">Hlavná stránka</a></li>
             <li class="hlavne"><a href="Sporty/Sportovci.php">Športy<i class="fas fa-caret-down"></i></li>
-            <li class="opacne"><a href="Sporty/Atletika.html" class="red">Atletika</a></li>
+            <li class="opacne"><a href="Sporty/Atletika.php" class="red">Atletika</a></li>
             <li class="opacne"><a href="Sporty/Futbal.html" class="red">Futbal</a></li>
             <li class="opacne"><a href="Sporty/Plavanie.html" class="red">Plávanie</a></li>
             <li class="opacne"><a href="Sporty/Volejbal.html" class="red">Volejbal</a></li>
