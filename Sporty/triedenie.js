@@ -16,8 +16,6 @@ function sortTable(n) {
             //porovname dva po sebe iduce riadky
             x = rows[i].getElementsByTagName("TD")[n];
             y = rows[i + 1].getElementsByTagName("TD")[n];
-            //console.log(x);
-            //console.log(y);
             //tu skontrulujem, ci idem menit
             switch (n) {
                 case 0:
@@ -50,12 +48,6 @@ function sortTable(n) {
     }
 }
 function refreshTable() {
-    // refreshes the table
-    /*var table = document.getElementById ("mojaTabulka");
-    var rows = table.rows;
-    for (var i = 1; i < (rows.length - 1); i++) {
-        rows[i] = window.riadky[i];
-    }*/
     location.reload();
 }
 function klasicky(x, y, dir) {

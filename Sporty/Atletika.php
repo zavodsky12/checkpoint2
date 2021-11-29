@@ -197,6 +197,8 @@ $authctr = new AuthController();
                 <form method="post">
                     <label for="controle">Email</label>
                     <input type="text" name="login">
+                    <label for="controle">Heslo</label>
+                    <input type="password" name="password">
                     <input type="submit" value="Prihlasit">
                 </form>
             </div>
