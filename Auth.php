@@ -11,9 +11,6 @@ class Auth
     public static function isLogged() {
         return isset($_SESSION['name']);
     }
-    public static function getName() {
-        return (Auth::isLogged() ? $_SESSION['name'] : "Anonym");
-    }
     public static function badLoggin($name) {
         $_SESSION['bad'] = $name;
     }

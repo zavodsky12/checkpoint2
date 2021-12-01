@@ -6,11 +6,6 @@ class AuthController
 {
     private $con;
 
-    public function loginForm()
-    {
-        return $this->html();
-    }
-
     public function __construct()
     {
         try {
@@ -30,9 +25,8 @@ class AuthController
     public function login($name)
     {
         $dlzka = strlen($name);
-        $pouzivane = substr($name, 1, $dlzka-1);
         $passwd = $_POST['password'];
-        if (strpos($pouzivane, '@') !== false) {
+        if ($dlzka > 2 && $dlzka < 255) {
             $stmt = $this->con->prepare("SELECT meno FROM prihlasenia WHERE meno = '$name'");
             $stmt->execute();
             $posts = $stmt->fetchAll(PDO::FETCH_COLUMN | PDO::FETCH_PROPS_LATE);
@@ -45,14 +39,6 @@ class AuthController
                 $stmt->execute();
 
                 $posts = $stmt->fetchAll(PDO::FETCH_COLUMN | PDO::FETCH_PROPS_LATE);
-                //$posts = strval($posts[0]);
-                //$posts = explode("'",$posts[0]);
-                echo '<script>';
-                echo 'console.log('. json_encode( $posts ) .')';
-                echo '</script>';
-                echo '<script>';
-                echo 'console.log('. json_encode( $passwd ) .')';
-                echo '</script>';
                 if ($passwd == $posts[0]) {
                     Auth::login($name);
                 } else {
@@ -68,10 +54,5 @@ class AuthController
     {
         Auth::logout();
         unset($_POST['logout']);
-    }
-
-    public function redirectToHome()
-    {
-        header("Location: index.php");
     }
 }

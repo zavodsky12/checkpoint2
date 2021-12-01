@@ -75,7 +75,7 @@ $authctr = new AuthController();
                 <?php } ?>
                 <form method="post">
                     <label for="controle">Email</label>
-                    <input type="text" name="login">
+                    <input type="email" name="login">
                     <label for="controle">Heslo</label>
                     <input type="password" name="password">
                     <input type="submit" value="Prihlasit">
@@ -100,7 +100,7 @@ $authctr = new AuthController();
     <div class="col-3">
 
     </div>
-    <div class="col-6">]
+    <div class="col-6">
         <div class="footer">
             <p>Autor stránky - Daniel Závodský.</p>
         </div>
